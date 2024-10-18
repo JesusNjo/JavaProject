@@ -1,4 +1,9 @@
---liquibase formatted sql
+-- liquibase formatted sql
+-- Generated: 2024
+-- Model: DEV
+-- Version: 1.0.0
+-- Project: DEV
+-- Author: FRANCISCO NARANJO
 
 -- changeset francisco:1
 CREATE TABLE IF NOT EXISTS `error_log` (
