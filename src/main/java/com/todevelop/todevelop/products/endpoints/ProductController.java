@@ -60,8 +60,10 @@ public class ProductController {
             )
     })
     @GetMapping("/type")
-    public ResponseEntity<Product> getAllProductsByType(@RequestParam TelecomProductType type){
+    public ResponseEntity<Product> getProductsByType(@RequestParam TelecomProductType type){
         return new ResponseEntity<>(getProductAction.findProductModelByProductType(type), HttpStatus.OK);
     }
+    // clientProduct
+
 
 }

@@ -4,7 +4,9 @@ import java.util.UUID;
 
 public enum ResourceTypeEnum {
     MEMBER("mbr"),
-    CLIENT("cli");
+    CLIENT("cli"),
+    PRODUCT("prd"),
+    PRODUCT_CLIENT("pdc");
 
     private final String prefix;
 

@@ -2,6 +2,8 @@ package com.todevelop.todevelop.products.services.client_products;
 
 import com.todevelop.todevelop.clients.services.client.model.ClientsModel;
 import com.todevelop.todevelop.products.services.client_products.model.ClientProductModel;
+import com.todevelop.todevelop.products.services.products.model.ProductModel;
+import com.todevelop.todevelop.utils.StatusEnum;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,11 @@ public class ClientProductDAOImpl implements ClientProductDAO{
     @Override
     public List<ClientProductModel> getClientProductModelByClientId(ClientsModel client) {
         return clientProductRepository.getClientProductModelByClientId(client);
+    }
+
+    @Override
+    public Optional<ClientProductModel> findByClientAndProductAndStatus(ClientsModel client, ProductModel product, StatusEnum status) {
+        return clientProductRepository.findByClientAndProductAndStatus(client,product,status);
     }
 
     @Override

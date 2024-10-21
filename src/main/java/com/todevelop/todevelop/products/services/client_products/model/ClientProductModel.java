@@ -5,9 +5,7 @@ import com.todevelop.todevelop.products.services.products.model.ProductModel;
 import com.todevelop.todevelop.utils.AuditBaseModel;
 import com.todevelop.todevelop.utils.StatusEnum;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.io.Serializable;
 
@@ -16,6 +14,8 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Table(name = "client_product")
 @Builder
+@Getter
+@Setter
 public class ClientProductModel extends AuditBaseModel implements Serializable {
 
     @Id
