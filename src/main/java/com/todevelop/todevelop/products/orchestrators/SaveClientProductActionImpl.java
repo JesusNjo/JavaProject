@@ -11,8 +11,8 @@ import com.todevelop.todevelop.products.orchestrators.action.SaveClientProductAc
 import com.todevelop.todevelop.products.services.client_products.model.ClientProductModel;
 import com.todevelop.todevelop.products.services.client_products.service.ClientProductService;
 import com.todevelop.todevelop.products.services.products.services.ProductService;
-import com.todevelop.todevelop.utils.ResourceTypeEnum;
-import com.todevelop.todevelop.utils.StatusEnum;
+import com.todevelop.todevelop.utils.enums.ResourceTypeEnum;
+import com.todevelop.todevelop.utils.enums.StatusEnum;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

@@ -1,8 +1,7 @@
 package com.todevelop.todevelop.clients.orchestrators.action;
 
 import com.todevelop.todevelop.clients.dto.Client;
-import com.todevelop.todevelop.clients.services.client.model.ClientsModel;
-import com.todevelop.todevelop.utils.StatusEnum;
+import com.todevelop.todevelop.utils.enums.StatusEnum;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

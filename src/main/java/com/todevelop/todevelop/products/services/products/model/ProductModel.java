@@ -1,7 +1,7 @@
 package com.todevelop.todevelop.products.services.products.model;
 
 import com.todevelop.todevelop.utils.AuditBaseModel;
-import com.todevelop.todevelop.utils.StatusEnum;
+import com.todevelop.todevelop.utils.enums.StatusEnum;
 import jakarta.persistence.*;
 import lombok.*;
 

@@ -1,7 +1,7 @@
 package com.todevelop.todevelop.clients.services.client;
 
 import com.todevelop.todevelop.clients.services.client.model.ClientsModel;
-import com.todevelop.todevelop.utils.StatusEnum;
+import com.todevelop.todevelop.utils.enums.StatusEnum;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

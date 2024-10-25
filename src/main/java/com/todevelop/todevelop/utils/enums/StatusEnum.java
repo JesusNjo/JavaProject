@@ -1,4 +1,4 @@
-package com.todevelop.todevelop.utils;
+package com.todevelop.todevelop.utils.enums;
 
 import java.util.HashMap;
 import java.util.Map;

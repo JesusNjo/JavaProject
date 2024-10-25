@@ -2,7 +2,7 @@ package com.todevelop.todevelop.clients.services.client.model;
 
 import com.todevelop.todevelop.members.services.member.model.MemberModel;
 import com.todevelop.todevelop.utils.AuditBaseModel;
-import com.todevelop.todevelop.utils.StatusEnum;
+import com.todevelop.todevelop.utils.enums.StatusEnum;
 import jakarta.persistence.*;
 import lombok.*;
 
