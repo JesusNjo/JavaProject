@@ -34,7 +34,7 @@ public class UserModel extends AuditBaseModel implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "member_id", referencedColumnName = "member_id")
-    private MemberModel memberId;
+    private MemberModel member;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)

@@ -10,7 +10,12 @@ import org.mapstruct.Mappings;
 public abstract class UserMapper {
 
     @Mappings({
-            @Mapping(target = "memberId",source = "memberId.memberId")
+            @Mapping(target = "memberId", source = "member.memberId")
     })
     public abstract User toDto(UserModel entity);
+
+    @Mappings({
+            @Mapping(target = "member.memberId", source = "memberId")
+    })
+    public abstract UserModel toModel(User dto);
 }

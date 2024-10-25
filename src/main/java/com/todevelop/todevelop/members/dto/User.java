@@ -20,11 +20,11 @@ public class User implements Serializable {
 
     private String username;
 
-    private MemberModel memberId;
+    private String memberId;
 
     private StatusEnum status;
 
-    private TypesRegister typesRegister;
+    private String typesRegister;
 
     private Boolean defaultUser;
 
