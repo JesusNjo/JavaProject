@@ -2,7 +2,9 @@ package com.todevelop.todevelop.products.endpoints;
 
 import com.todevelop.todevelop.products.dto.Product;
 import com.todevelop.todevelop.products.orchestrators.action.GetProductAction;
+import com.todevelop.todevelop.products.orchestrators.action.SaveClientProductOrderAction;
 import com.todevelop.todevelop.products.services.products.model.TelecomProductType;
+import com.todevelop.todevelop.routes.RoutesApp;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -22,11 +24,13 @@ import java.util.List;
 @Slf4j
 @RestController
 @AllArgsConstructor
-@RequestMapping("/v1/products")
+@RequestMapping(RoutesApp.PRODUCT_ROUTE)
 
 public class ProductController {
 
     private final GetProductAction getProductAction;
+
+    private final SaveClientProductOrderAction saveClientProductOrderAction;
     @Operation(summary = "Get all product from dev")
     @ApiResponses({
             @ApiResponse(
