@@ -13,6 +13,7 @@ import com.todevelop.todevelop.products.services.client_product_order.model.Clie
 import com.todevelop.todevelop.products.services.client_product_order.service.ClientProductOrderService;
 import com.todevelop.todevelop.products.services.products.services.ProductService;
 import com.todevelop.todevelop.utils.enums.StatusEnum;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -30,27 +31,30 @@ class SaveClientProductOrderActionImpl implements SaveClientProductOrderAction {
     private final ClientProductOrderService clientProductOrderService;
     private final I18nService i18nService;
     @Override
+    @Transactional
     public List<ClientProductOrder> saveClientProductOrder(RequestClientProductOrder request) {
-        var client = clientsService.findById(request.getClientId()).orElseThrow(()->{
+        var client = clientsService.findById(request.getClientId()).orElseThrow(() -> {
             log.error("Client not found {}", request.getClientId());
-            return new ResourceNotFoundException(i18nService.getMessage(I18nClients.CLIENT_NOT_FOUND_MSG_ERROR),request.getClientId());
+            return new ResourceNotFoundException(i18nService.getMessage(I18nClients.CLIENT_NOT_FOUND_MSG_ERROR), request.getClientId());
         });
+
         var response = new ArrayList<ClientProductOrder>();
-        request.getProducts().forEach(product->{
-            var productF = productService.findById(product).orElseThrow(()->{
-                log.error("Product not found {}", product);
-                return new ResourceNotFoundException(i18nService.getMessage(I18nClients.PRODUCT_NOT_FOUND_MSG_ERROR),request.getClientId());
+
+        request.getProductsWithQuantities().forEach((productId, quantity) -> {
+            var product = productService.findById(productId).orElseThrow(() -> {
+                log.error("Product not found {}", productId);
+                return new ResourceNotFoundException(i18nService.getMessage(I18nClients.PRODUCT_NOT_FOUND_MSG_ERROR), productId);
             });
 
-            var clientProductOrderId = ClientProductOrderId.of(client,productF);
+            var clientProductOrderId = ClientProductOrderId.of(client, product);
 
             response.add(
                     clientProductOrderMapper.toDto(
                             clientProductOrderService.save(
                                     ClientProductOrderModel.builder()
                                             .clientProductOrderId(clientProductOrderId)
-                                            .orderQuantity(request.getQuantity())
-                                            .totalPay(productF.getPrice()* request.getQuantity())
+                                            .orderQuantity(quantity)
+                                            .totalPay(product.getPrice() * quantity)
                                             .status(StatusEnum.ACTIVE)
                                             .build()
                             )

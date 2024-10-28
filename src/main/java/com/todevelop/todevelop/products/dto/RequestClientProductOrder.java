@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.util.List;
+import java.util.Map;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,6 +19,5 @@ public class RequestClientProductOrder implements Serializable {
     private static final long serialVersionUID = -6742245219779372834L;
 
     private String clientId;
-    private Integer quantity;
-    private List<String> products;
+    private Map<String, Integer> productsWithQuantities;
 }

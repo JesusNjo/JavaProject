@@ -1,6 +1,8 @@
 package com.todevelop.todevelop.products.endpoints;
 
+import com.todevelop.todevelop.products.dto.ClientProductOrder;
 import com.todevelop.todevelop.products.dto.Product;
+import com.todevelop.todevelop.products.dto.RequestClientProductOrder;
 import com.todevelop.todevelop.products.orchestrators.action.GetProductAction;
 import com.todevelop.todevelop.products.orchestrators.action.SaveClientProductOrderAction;
 import com.todevelop.todevelop.products.services.products.model.TelecomProductType;
@@ -14,10 +16,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -70,4 +69,24 @@ public class ProductController {
     // clientProduct
 
 
+    //Client product order
+
+    @Operation(summary = "Create order to client")
+    @ApiResponses({
+            @ApiResponse(
+                    responseCode = "201",
+                    content = {@Content(mediaType = "application/json",
+                    schema = @Schema(implementation = ClientProductOrder.class))}
+            ),
+            @ApiResponse(
+                    responseCode = "204",
+                    description = "No content",
+                    content = {@Content}
+
+            )
+    })
+    @PostMapping("/client/order")
+    public ResponseEntity<List<ClientProductOrder>> createOrderClient(@RequestBody RequestClientProductOrder request){
+        return new ResponseEntity<>(saveClientProductOrderAction.saveClientProductOrder(request),HttpStatus.CREATED);
+    }
 }
