@@ -87,10 +87,10 @@ PRIMARY KEY (product_id)
 -- changeset products.francisco:5
 INSERT INTO products (product_id, product_type, product_name, description, price, activation_date, status, created_at, created_by, last_update, last_update_by)
 VALUES
-    ('prd_123e45675e89b512d35a4565426614174001', 'BROADBAND_INTERNET', 'Internet de Banda Ancha', 'Servicio de internet para el hogar con alta velocidad', 50.00, '2024-10-01 00:00:00', 'ACTIVE', NOW(), 'system', NOW(), 'system'),
-    ('prd_123e45675e89b512d35a4565426614174002', 'CABLE_TV', 'Televisión por Cable', 'Paquete de canales de televisión por cable', 40.00, '2024-10-01 00:00:00', 'ACTIVE', NOW(), 'system', NOW(), 'system'),
-    ('prd_123e45675e89b512d35a4565426614174003', 'FIXED_LINE_PHONE', 'Teléfono Fijo', 'Servicio de telefonía fija para el hogar', 20.00, '2024-10-01 00:00:00', 'ACTIVE', NOW(), 'system', NOW(), 'system'),
-    ('prd_123e45675e89b512d35a4565426614174004', 'STREAMING_SERVICE', 'Servicio de Streaming', 'Suscripción a plataforma de streaming', 10.00, '2024-10-01 00:00:00', 'ACTIVE', NOW(), 'system', NOW(), 'system');
+    ('prd_123e45675e89b512d35a456542661417', 'BROADBAND_INTERNET', 'Internet de Banda Ancha', 'Servicio de internet para el hogar con alta velocidad', 50.00, '2024-10-01 00:00:00', 'ACTIVE', NOW(), 'system', NOW(), 'system'),
+    ('prd_123e45675e89b512d35a456542661418', 'CABLE_TV', 'Televisión por Cable', 'Paquete de canales de televisión por cable', 40.00, '2024-10-01 00:00:00', 'ACTIVE', NOW(), 'system', NOW(), 'system'),
+    ('prd_123e45675e89b512d35a456542661419', 'FIXED_LINE_PHONE', 'Teléfono Fijo', 'Servicio de telefonía fija para el hogar', 20.00, '2024-10-01 00:00:00', 'ACTIVE', NOW(), 'system', NOW(), 'system'),
+    ('prd_123e45675e89b512d35a456542661420', 'STREAMING_SERVICE', 'Servicio de Streaming', 'Suscripción a plataforma de streaming', 10.00, '2024-10-01 00:00:00', 'ACTIVE', NOW(), 'system', NOW(), 'system');
 
 -- changeset products.francisco:6
 CREATE TABLE IF NOT EXISTS users (
@@ -106,4 +106,29 @@ last_update_by VARCHAR(255) NOT NULL,
 FOREIGN KEY (member_id) REFERENCES members(member_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Tabla de usuarios';
 
+-- changeset products.francisco:7
+CREATE TABLE client_product_order (
+client_id CHAR(36) NOT NULL,
+product_id CHAR(36) NOT NULL,
+client_product_order_id CHAR(36) NOT NULL,
+order_quantity INT NOT NULL,
+total_pay DOUBLE NOT NULL,
+status VARCHAR(50) NOT NULL,
+created_at TIMESTAMP NOT NULL,
+created_by VARCHAR(255) NOT NULL,
+last_update TIMESTAMP NOT NULL,
+last_update_by VARCHAR(255) NOT NULL,
+PRIMARY KEY (client_product_order_id, client_id, product_id),
+CONSTRAINT fk_client FOREIGN KEY (client_id) REFERENCES clients (client_id),
+CONSTRAINT fk_product FOREIGN KEY (product_id) REFERENCES products (product_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- changeset products.francisco:8
+ALTER TABLE client_product_order
+DROP PRIMARY KEY;
+
+ALTER TABLE client_product_order
+DROP COLUMN client_product_order_id;
+
+ALTER TABLE client_product_order
+ADD PRIMARY KEY (client_id, product_id);
