@@ -84,14 +84,6 @@ status VARCHAR(50) NOT NULL,
 PRIMARY KEY (product_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Tabla de productos';
 
--- changeset products.francisco:5
-INSERT INTO products (product_id, product_type, product_name, description, price, activation_date, status, created_at, created_by, last_update, last_update_by)
-VALUES
-    ('prd_123e45675e89b512d35a456542661417', 'BROADBAND_INTERNET', 'Internet de Banda Ancha', 'Servicio de internet para el hogar con alta velocidad', 50.00, '2024-10-01 00:00:00', 'ACTIVE', NOW(), 'system', NOW(), 'system'),
-    ('prd_123e45675e89b512d35a456542661418', 'CABLE_TV', 'Televisión por Cable', 'Paquete de canales de televisión por cable', 40.00, '2024-10-01 00:00:00', 'ACTIVE', NOW(), 'system', NOW(), 'system'),
-    ('prd_123e45675e89b512d35a456542661419', 'FIXED_LINE_PHONE', 'Teléfono Fijo', 'Servicio de telefonía fija para el hogar', 20.00, '2024-10-01 00:00:00', 'ACTIVE', NOW(), 'system', NOW(), 'system'),
-    ('prd_123e45675e89b512d35a456542661420', 'STREAMING_SERVICE', 'Servicio de Streaming', 'Suscripción a plataforma de streaming', 10.00, '2024-10-01 00:00:00', 'ACTIVE', NOW(), 'system', NOW(), 'system');
-
 -- changeset products.francisco:6
 CREATE TABLE IF NOT EXISTS users (
 username VARCHAR(255) NOT NULL PRIMARY KEY,
